@@ -1,0 +1,58 @@
+USER TABLE:
+
+ CREATE TABLE user (
+ id INT AUTO_INCREMENT PRIMARY KEY,
+ first_name VARCHAR(50) NOT NULL,
+ last_name VARCHAR(50) NOT NULL,
+ username VARCHAR(50) UNIQUE NOT NULL,
+ password VARCHAR(255) NOT NULL, 
+ email VARCHAR(100) UNIQUE NOT NULL
+ );
+
+-------------------------------------------------------------------------------------------------------------------
+
+ FLIGHT TABLE:
+
+ CREATE TABLE flight (
+ flight_number VARCHAR(20) PRIMARY KEY,
+ source VARCHAR(50) NOT NULL,
+ destination VARCHAR(50) NOT NULL,
+ departure_date DATE NOT NULL,
+ departure_time TIME NOT NULL,
+ e_class INT NOT NULL,
+ b_class INT NOT NULL,
+ f_class INT NOT NULL
+ );
+
+---------------------------------------------------------------------------------------------------------------------
+
+ INSERTING VALUES INTO FLIGHT TABLE:
+
+INSERT INTO flight (flight_number, source, destination, departure_date, departure_time, e_class, 
+b_class, f_class) VALUES ('FL123', 'New York', 'Los Angeles', '2023-12-26', '14:00:00', 100, 50,20);
+INSERT INTO flight (flight_number, source, destination, departure_date, departure_time, e_class, 
+b_class, f_class) VALUES ('FL124', 'Chicago', 'Miami', '2023-12-27', '10:30:00', 80, 40, 15);
+INSERT INTO flight (flight_number, source, destination, departure_date, departure_time, e_class, 
+b_class, f_class) VALUES ('FL125', 'San Francisco', 'Seattle', '2023-12-28', '12:45:00', 90, 45, 10);
+INSERT INTO flight (flight_number, source, destination, departure_date, departure_time, e_class, 
+b_class, f_class) VALUES ('FL126', 'Dallas', 'Atlanta', '2023-12-29', '14:00:00', 85, 42, 18);
+14
+INSERT INTO flight (flight_number, source, destination, departure_date, departure_time, e_class, 
+b_class, f_class) VALUES ('FL127', 'Boston', 'Washington D.C.', '2023-12-30', '16:15:00', 95, 48, 
+17);
+
+--------------------------------------------------------------------------------------------------------------
+
+TICKET_BOOIKNG TABLE:
+
+CREATE TABLE ticket_booking (
+ booking_id INT AUTO_INCREMENT PRIMARY KEY,
+ flight_number VARCHAR(20),
+ username VARCHAR(50),
+ passport_number VARCHAR(50),
+ class VARCHAR(20), -- Using VARCHAR for class type
+ price DECIMAL(10, 2), -- Assuming a decimal data type for price
+ FOREIGN KEY (flight_number) REFERENCES flight(flight_number),
+ FOREIGN KEY (username) REFERENCES user(username)
+ );
+
